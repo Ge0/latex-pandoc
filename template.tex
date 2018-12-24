@@ -1,5 +1,5 @@
 %!TEX TS-program = xelatex
-\documentclass[12pt]{memoir}  
+\documentclass[11pt]{memoir}  
 
 % The declaration of the document class:
 
@@ -121,7 +121,8 @@
 % If you have a copy you might try it; as it is
 % I will comment it out and supply something more certain to be around:
 
-\setmainfont{Nimbus Roman}
+% \setmainfont{Nimbus Roman}
+\setmainfont{Liberation Serif}
 
 % Properly one should specify a sanserif font and a monospace font
 % see e.g. the example of Kieran Healy:
@@ -320,6 +321,9 @@ $endfor$
 % the variable `body`
 % It then concludes the document it has been writing. 
 
+\usepackage{titlesec}
+\titleformat{\chapter}{\Large\bfseries}{}{0pt}{}
+
 \begin{document}
 
 
@@ -345,7 +349,7 @@ $if(alignment)$
 \begin{$alignment$}
 $endif$
 
-\newgeometry{bindingoffset=.5cm,paperwidth=11cm,paperheight=18cm,top=1cm,left=1cm,right=1cm,bottom=1.5cm}
+\newgeometry{paperwidth=11cm,paperheight=18cm,top=1cm,left=1.5cm,right=1cm,bottom=1.5cm}
 $body$
 
 %$if(alignment)$
