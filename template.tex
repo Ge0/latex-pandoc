@@ -1,5 +1,7 @@
 %!TEX TS-program = xelatex
-\documentclass[11pt]{memoir}  
+\documentclass[12pt]{memoir}  
+
+\sloppy
 
 % The declaration of the document class:
 
@@ -145,7 +147,7 @@
 % I'm puzzled why I have this foonote speciality, 
 % I wonder if it's part of my problem I've been having, but wont look
 % into it now. 
-\usepackage[flushmargin]{footmisc} 
+%\usepackage[flushmargin]{footmisc} 
 % \usepackage[hang,flushmargin]{footmisc}
 
 
@@ -158,10 +160,10 @@
 
 % Paragraph format:
 % Pandoc prefers unindented paragraphs in the European style:
-\setlength{\parindent}{0pt}
+%\setlength{\parindent}{0pt}
 %  ... with paragraph breaks marked by a slight lengthening of 
 % the space between paragraphs:
-\setlength{\parskip}{6pt plus 2pt minus 1pt}
+%\setlength{\parskip}{6pt plus 2pt minus 1pt}
 
 % Page format:
 \pagestyle{plain}  
@@ -324,6 +326,27 @@ $endfor$
 \usepackage{titlesec}
 \titleformat{\chapter}{\Large\bfseries}{}{0pt}{}
 
+\newcommand\blankpage{
+	\clearpage
+	\begingroup
+	\null
+	\thispagestyle{empty}
+	\addtocounter{page}{0}
+	\hypersetup{pageanchor=false}
+	\clearpage
+	\endgroup
+}
+
+\usepackage{fancyhdr}
+\fancypagestyle{plain}{%
+
+\newgeometry{paperwidth=11cm,paperheight=18cm,top=1cm,left=1cm,right=1cm,bottom=1.5cm,bindingoffset=0.5cm}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot[LE,RO]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+}
+
 \begin{document}
 
 
@@ -331,6 +354,8 @@ $if(title)$
 \title{$title$}
 \author{$for(author)$$author$$sep$\\$endfor$}
 \date{}
+
+\newgeometry{paperwidth=11cm,paperheight=18cm,top=1cm,left=1cm,right=1cm,bottom=1cm}
 
 \clearpage
 \newpage
@@ -344,12 +369,13 @@ $if(toc)$
 
 $endif$
 
+\pagestyle{plain}
 
 $if(alignment)$
 \begin{$alignment$}
 $endif$
 
-\newgeometry{paperwidth=11cm,paperheight=18cm,top=1cm,left=1.5cm,right=1cm,bottom=1.5cm}
+%\newgeometry{paperwidth=11cm,paperheight=18cm,top=1cm,left=1.5cm,right=1cm,bottom=1.5cm}
 $body$
 
 %$if(alignment)$
